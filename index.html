@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Mis Tareas Pro</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/logo.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#222" />
+    <meta name="theme-color" content="#222" />
+</head>
+
+<body>
+    <!-- Barra superior -->
+    <div id="titleBar" class="no-overlay">
+        <header>
+            <h1>Mis Tareas Pro</h1>
+            <div id="title-bar-status-indicator" class="status">Offline</div>
+        </header>
+        <div class="title-bar-buttons no-drag">
+            <button id="themeToggle" class="icon-btn">🌓</button>
+            <button id="viewToggle" class="icon-btn">📅</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Vista de Calendario -->
+        <div id="calendarView" class="view hidden">
+            <div class="calendar-header">
+                <button id="prevMonth" class="icon-btn">◀</button>
+                <h2 id="currentMonth"></h2>
+                <button id="nextMonth" class="icon-btn">▶</button>
+            </div>
+            <div id="calendar" class="calendar"></div>
+        </div>
+
+        <!-- Vista de Lista -->
+        <div id="listView" class="view">
+            <form id="addForm" class="border-radius-4">
+                <input id="newTaskInput" class="input" type="text" placeholder="Ingresa una Tarea" autofocus>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha Inicio:</label>
+                        <input type="date" id="startDateInput" class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha Fin:</label>
+                        <input type="date" id="dueDateInput" class="input">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Prioridad:</label>
+                        <select id="priorityInput" class="input">
+                            <option value="baja">Baja</option>
+                            <option value="media" selected>Media</option>
+                            <option value="alta">Alta</option>
+                            <option value="urgente">Urgente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría:</label>
+                        <select id="categoryInput" class="input">
+                            <option value="personal">Personal</option>
+                            <option value="trabajo">Trabajo</option>
+                            <option value="estudio">Estudio</option>
+                            <option value="salud">Salud</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="addBtn" class="button primary">💾 Guardar Tarea</button>
+            </form>
+            
+            <div class="filters">
+                <select id="filterPriority" class="input">
+                    <option value="todas">Todas las prioridades</option>
+                    <option value="baja">Baja</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
+                    <option value="urgente">Urgente</option>
+                </select>
+                
+                <select id="filterCategory" class="input">
+                    <option value="todas">Todas las categorías</option>
+                    <option value="personal">Personal</option>
+                    <option value="trabajo">Trabajo</option>
+                    <option value="estudio">Estudio</option>
+                    <option value="salud">Salud</option>
+                    <option value="otros">Otros</option>
+                </select>
+
+                <button id="clearFilters" class="button secondary">🧹 Limpiar</button>
+            </div>
+
+            <div class="stats">
+                <span id="totalTasks">Total: 0</span>
+                <span id="completedTasks">Completadas: 0</span>
+                <span id="pendingTasks">Pendientes: 0</span>
+            </div>
+
+            <ol id="list"></ol>
+        </div>
+    </main>
+
+    <!-- Modal para editar tarea -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Editar Tarea</h3>
+            <input type="text" id="editTaskInput" class="input">
+            <div class="form-row">
+                <input type="date" id="editStartDate" class="input">
+                <input type="date" id="editDueDate" class="input">
+            </div>
+            <div class="form-row">
+                <select id="editPriority" class="input">
+                    <option value="baja">Baja</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
+                    <option value="urgente">Urgente</option>
+                </select>
+                <select id="editCategory" class="input">
+                    <option value="personal">Personal</option>
+                    <option value="trabajo">Trabajo</option>
+                    <option value="estudio">Estudio</option>
+                    <option value="salud">Salud</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button id="saveEdit" class="button primary">💾 Guardar</button>
+                <button id="cancelEdit" class="button secondary">❌ Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
